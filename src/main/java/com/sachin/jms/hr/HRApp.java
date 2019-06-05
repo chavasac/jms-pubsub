@@ -17,7 +17,7 @@ public class HRApp {
 
 		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
 		JMSContext jmsContext = connectionFactory.createContext();
-		
+
 		Employee employee = new Employee();
 		employee.setId(123);
 		employee.setFirstName("Sachin");
@@ -25,8 +25,10 @@ public class HRApp {
 		employee.setEmail("abc@gmail.com");
 		employee.setDesignation("Software Developer");
 		employee.setPhone("12333444");
-		
-		jmsContext.createProducer().send(topic, employee);
+
+		for (int i = 0; i < 10; i++) {
+			jmsContext.createProducer().send(topic, employee);
+		}
 		System.out.println("Message sent");
 
 	}
